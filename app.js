@@ -12,7 +12,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/images", ImageRouter)
 
-const PORT = process.env.PORT || 3000
+const PORT = 8080
 app.listen(PORT, function () {
-  console.log("listening on port 3000");
+  console.log(`listening on port ${PORT}`);
 });
