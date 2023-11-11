@@ -1,28 +1,28 @@
 const mongoose = require('mongoose');
 
-const imageSchema = new mongoose.Schema({
-    userId: {
+const userSchema = new mongoose.Schema({
+    email :{
         type: String
     },
-    title : {   
+    password: {
         type: String
     },
-    description: {
+    username: {
         type: String
     },
-    image: {
+    phone : {
         type: String
     },
-    sale : {    
-        type: Boolean
-    },
-    price: {
-        type: Number
-    },  
-    category: {
+    profile_image: {
         type: String
     },
-    uploadTime: {
+    role: {
+        type: String
+    },
+    uid : {
+        type: String
+    },
+    createTime: {
         type: Date,
         default: Date.now
     },
@@ -31,4 +31,4 @@ const imageSchema = new mongoose.Schema({
         default: Date.now
     }   });
 
-module.exports = mongoose.model('Image', imageSchema);
+module.exports = mongoose.model('User', userSchema);
