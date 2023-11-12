@@ -182,4 +182,32 @@ router.put("/:id", upload.single("image"), async (req, res) => {
     });
   }
 });
+router.delete("/:id", async (req, res) => {
+  try {
+    const objectId = req.params.id;
+    const deletedObject = await Image.findOneAndDelete(objectId);
+    if (!deletedObject) {
+      return res.status(404).json({
+        success: false,
+        message: "Object not found",
+      });
+    }
+    res.status(200).json({
+      success: true,
+      message: "Object deleted successfully",
+    });
+    if(res.status(200)){
+      const imageRef = ref(storage, deletedObject.image);
+      deleteObject(imageRef).then(() => {
+        console.log("Delete success for delete image");
+      });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(400).json({
+      success: false,
+      message: "Error to delete image ",
+    });
+  }
+});
 module.exports = router;
