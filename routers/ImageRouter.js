@@ -26,7 +26,7 @@ router.get("/", async (req, res) => {
     const findImages = await Image.find().skip(skip).limit(limit);
 
     if (!findImages || findImages.length === 0) {
-      return res.status(404).json({
+      return res.json({
         success: false,
         message: "Images not found",
       });
